@@ -29,7 +29,7 @@ public class cloneService {
     }
     
     public Clone save(Clone clone){
-        System.err.println(clone);
+        
         return cloneRepo.save(clone);
     
     }
@@ -84,7 +84,7 @@ public class cloneService {
         
         if(clone.getQuantity()!= 0){
         
-            cloneExist.get().setBrand(clone.getBrand());
+            cloneExist.get().setQuantity(clone.getQuantity());
         
         }
         
