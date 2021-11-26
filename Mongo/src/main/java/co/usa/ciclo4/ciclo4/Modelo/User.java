@@ -5,6 +5,7 @@
  */
 package co.usa.ciclo4.ciclo4.Modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
 import javax.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -26,8 +27,8 @@ public class User {
     private Integer id;
     private String identification;
     private String name;
-    private Date birthDay;
-    private String monthBirthDay;
+    //private Date birthDay;
+    //private String monthBirthDay;
     private String address;
     private String cellPhone;
     private String email;
