@@ -2,13 +2,13 @@
 var checkLoggi = 0;
 
 function userlogging(){
-
+        
         let userEmail = $("#userEmail").val();
         let userPass = $("#userPass").val();
    
     $.ajax({    
 
-        url: 'http://localhost:8080/api/user/'+userEmail+'/'+userPass,
+        url: 'http://129.151.116.109:8080/api/user/'+userEmail+'/'+userPass,
         
         type: 'GET',
         dataType : 'JSON',
@@ -24,6 +24,7 @@ function userlogging(){
                     if (checkLoggi == 0){
                         let alertPlaceholderLog = document.getElementById('liveAlertPlaceholderLog')
                         var wrapper4 = document.createElement('div')
+                        alertPlaceholderLog.innerHTML = "";
                         wrapper4.innerHTML = `<div class="alert alert-danger" role="alert">
                         <h4 class="alert-heading">Incorrect Data!</h4>
                         <p>  Please be sure to enter all the requested information   </p>
@@ -137,6 +138,7 @@ function verEmail(){
 
                  let alertPlaceholderLog = document.getElementById('liveAlertPlaceholderLog')
                  var wrapper4 = document.createElement('div')
+                 alertPlaceholderEmail.innerHTML="";
                  wrapper4.innerHTML = `<div class="alert alert-success" role="alert">
                  <h4 class="alert-heading">Well done!</h4>
                  <p> Your account has been created successfully   </p>
@@ -160,6 +162,7 @@ function verEmail(){
                     emailVal.className="form-control is-invalid";
                     let alertPlaceholderEmail = document.getElementById('liveAlertPlaceholderEmail')
                     let wrapper2 = document.createElement('div')
+                    alertPlaceholderEmail.innerHTML="";
                     wrapper2.innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert"> Invalid Email <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
 
                     alertPlaceholderEmail.append(wrapper2)
@@ -214,6 +217,7 @@ function valEmplyFlield(){
         if (check == 0){
         let alertPlaceholderHead = document.getElementById('liveAlertPlaceholderHead')
         var wrapper3 = document.createElement('div')
+        alertPlaceholderHead.innerHTML = "";
         wrapper3.innerHTML = `<div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">Incorrect Data!</h4>
         <p>  Please be sure to enter all the requested information   </p>
@@ -257,9 +261,14 @@ function valEmplyFlield(){
 function saveUser(){
 
     let var2 = {
+        
+        identification:$("#userEmail").val(),
+        name:$("#nameCreation").val(),
+        address:$("#userEmail").val(),
+        cellphone:$("#userPass").val(),
         email:$("#correoCreation").val(),
         password:$("#password1").val(),
-        name:$("#nameCreation").val()
+        zone:$("#nameCreation").val()
         
     };
     $.ajax({
@@ -300,6 +309,7 @@ function valEmplyFlieldLog(){
         if (checkLog == 0){
         let alertPlaceholderLog = document.getElementById('liveAlertPlaceholderLog')
         var wrapper4 = document.createElement('div')
+        alertPlaceholderLog.innerHTML = "";
         wrapper4.innerHTML = `<div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">Incorrect Data!</h4>
         <p>  Please be sure to enter all the requested information   </p>

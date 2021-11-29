@@ -26,6 +26,12 @@ public class UserService {
 
         return userRepo.getAll();
     }
+    
+    public Optional<User> getById(Integer id){
+    
+    return userRepo.getUserById(id);
+    
+    }
 
     public User save(User user){
     
