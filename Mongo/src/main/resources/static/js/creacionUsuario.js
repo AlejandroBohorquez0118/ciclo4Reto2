@@ -239,7 +239,7 @@ function verEmailU(){
             },
         
                 complete : function(xhr, status) {
-                    saveUserU();
+                    creacionId();
                 //alert('Petición realizada '+xhr.status);
 
 
@@ -248,13 +248,14 @@ function verEmailU(){
 }
 
 function saveUserU(){
+    
 
     let var2 = {
-        
+        id:window.idCarga,
         identification:$("#IdentificationU").val(),
         name:$("#nameCreationU").val(),
         address:$("#AddressCreationU").val(),
-        cellphone:$("#CellphoneU").val(),
+        cellPhone:$("#CellphoneU").val(),
         email:$("#correoCreationU").val(),
         password:$("#password1U").val(),
         zone:$("#ZoneU").val(),
@@ -270,7 +271,8 @@ function saveUserU(){
         url:"http://localhost:8080/api/user/new",
         success:function(respose) {
             alert("se guardo satisfactoriamente")
-            console.log(var2);
+            console.log(respose);
+            console.log("funciono "+var2)
             //alert("Se guardó correctametne..");
             //window.location.reload();
             
@@ -281,4 +283,30 @@ function saveUserU(){
             alert("No se guardó correctamente");
         }
     });
+
 }
+    function creacionId(){
+
+        $.ajax({    
+            url : 'http://localhost:8080/api/user/all',
+        //  data : { id : 123 },
+            type : 'GET',
+            dataType : 'json',
+            
+            error : function(xhr, status) {
+                alert('ha sucedido un problema, '+xhr.status);
+            },
+            complete : function(xhr, status) {
+               // alert('Petición realizada, '+xhr.status);
+            },
+            success : function(json) {
+                window.idCarga = json.length + 1;
+                console.log(window.idCarga)
+                saveUserU();
+            }
+        });
+
+
+
+    }
+

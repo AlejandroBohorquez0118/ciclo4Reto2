@@ -162,7 +162,7 @@ function verEmail(){
 
     $.ajax({    
 
-        url: 'http://localhost:8080/api/user/'+userEmailVer,
+        url: 'http://localhost:8080/api/user/emailexist/'+userEmailVer,
         
         type: 'GET',
         dataType : 'JSON',
@@ -175,7 +175,7 @@ function verEmail(){
                 
                 if(json == false){
 
-                    saveUser();
+                    creacionIdL();
                  let modal = document.getElementById("exampleModalCenter");
                  modal.style.display="none";
 
@@ -183,7 +183,7 @@ function verEmail(){
 
                  let alertPlaceholderLog = document.getElementById('liveAlertPlaceholderLog')
                  var wrapper4 = document.createElement('div')
-                 alertPlaceholderEmail.innerHTML="";
+                 alertPlaceholderLog.innerHTML="";
                  wrapper4.innerHTML = `<div class="alert alert-success" role="alert">
                  <h4 class="alert-heading">Bien hecho!</h4>
                  <p> Tu cuenta ha sido creada satisfactoriamente   </p>
@@ -320,14 +320,41 @@ function valEmplyFlield(){
 
 }
 
+function creacionIdL(){
+
+    $.ajax({    
+        url : 'http://localhost:8080/api/user/all',
+    //  data : { id : 123 },
+        type : 'GET',
+        dataType : 'json',
+        
+        error : function(xhr, status) {
+            alert('ha sucedido un problema, '+xhr.status);
+        },
+        complete : function(xhr, status) {
+           // alert('Petición realizada, '+xhr.status);
+        },
+        success : function(json) {
+            window.idCarga2 = json.length + 1;
+            console.log(window.idCarga2)
+            saveUser();
+        }
+    });
+
+
+
+}
+
+
 function saveUser(){
 
+
     let var2 = {
-        
-        identification:$("#userEmail").val(),
+        id:window.idCarga2,
+        identification:$("#IdentificationC").val(),
         name:$("#nameCreation").val(),
         address:$("#AddressCreation").val(),
-        cellphone:$("#CellphoneC").val(),
+        cellPhone:$("#CellphoneC").val(),
         email:$("#correoCreation").val(),
         password:$("#password1").val(),
         zone:$("#ZoneC").val(),
