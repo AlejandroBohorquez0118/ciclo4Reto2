@@ -326,11 +326,12 @@ function saveUser(){
         
         identification:$("#userEmail").val(),
         name:$("#nameCreation").val(),
-        address:$("#userEmail").val(),
-        cellphone:$("#userPass").val(),
+        address:$("#AddressCreation").val(),
+        cellphone:$("#CellphoneC").val(),
         email:$("#correoCreation").val(),
         password:$("#password1").val(),
-        zone:$("#nameCreation").val()
+        zone:$("#ZoneC").val(),
+        type:$("#TypeC").val()
         
     };
     $.ajax({
