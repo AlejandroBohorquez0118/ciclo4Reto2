@@ -26,10 +26,10 @@ function userlogging(){
                         var wrapper4 = document.createElement('div')
                         alertPlaceholderLog.innerHTML = "";
                         wrapper4.innerHTML = `<div class="alert alert-danger" role="alert">
-                        <h4 class="alert-heading">Incorrect Data!</h4>
-                        <p>  Please be sure to enter all the requested information   </p>
+                        <h4 class="alert-heading">Datos incorrectos!</h4>
+                        <p>  Por favor asegurese de ingresar los datos de manera correcta   </p>
                         <hr>
-                        <p class="mb-0">Username and password do not match
+                        <p class="mb-0">Usuario y Contraseña no concuerdan
                         </p>
                       </div>`
                 
@@ -44,10 +44,10 @@ function userlogging(){
                         var wrapper4 = document.createElement('div')
                         alertPlaceholderLog.innerHTML = "";
                         wrapper4.innerHTML = `<div class="alert alert-danger" role="alert">
-                        <h4 class="alert-heading">Incorrect Data!</h4>
-                        <p>  Please be sure to enter all the requested information   </p>
+                        <h4 class="alert-heading">Datos Incorrectos!</h4>
+                        <p>  Por favor asegurese de ingresar los datos de manera correcta   </p>
                         <hr>
-                        <p class="mb-0">Username and password do not match
+                        <p class="mb-0">Usuario y Contraseña no concuerdan
                         </p>
                       </div>`
                         
@@ -87,8 +87,8 @@ let ver2 = document.getElementById("password2");
 if (pass1 == pass2){
 
     
+    confirmarEmail();
     
-    verEmail();
     var wrapper = document.getElementById("liveAlertPlaceholder")
     wrapper.innerHTML="";
     ver1.className="form-control";
@@ -109,6 +109,51 @@ wrapper.innerHTML="";
 
 }
 
+function confirmarEmail(){
+
+    let email = $("#correoCreation").val();
+    let var1 = 0;
+  let var2 = 1;
+  let confirmarEmail = 0;
+  let confirmarPunto = 0;
+  console.log("ejecutar confirmar");
+  for(i = 0 ; i < email.length; i++){
+    
+    var confirmar = email.substring(var1,var2);  
+    var1 += 1;
+    var2 += 1;
+    
+    if (confirmar == "@"){
+       confirmarEmail +=1; 
+    }
+
+    if (confirmar == "."){
+      confirmarPunto +=1; 
+   }
+   
+  }
+
+  if(confirmarEmail!=1 || confirmarPunto<1){
+
+    let emailVal = document.getElementById("correoCreation");
+                    
+
+    emailVal.className="form-control is-invalid";
+    let alertPlaceholderEmail = document.getElementById('liveAlertPlaceholderEmail')
+    let wrapper2 = document.createElement('div')
+    alertPlaceholderEmail.innerHTML="";
+    wrapper2.innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert"> Correo Invalido <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+    alertPlaceholderEmail.append(wrapper2)
+    
+
+}else{
+    verEmail();
+}
+
+
+}
+
 var checkEmail = 0;
 function verEmail(){
 
@@ -117,7 +162,7 @@ function verEmail(){
 
     $.ajax({    
 
-        url: 'http://129.151.116.109:8080/api/user/'+userEmailVer,
+        url: 'http://localhost:8080/api/user/'+userEmailVer,
         
         type: 'GET',
         dataType : 'JSON',
@@ -140,10 +185,10 @@ function verEmail(){
                  var wrapper4 = document.createElement('div')
                  alertPlaceholderEmail.innerHTML="";
                  wrapper4.innerHTML = `<div class="alert alert-success" role="alert">
-                 <h4 class="alert-heading">Well done!</h4>
-                 <p> Your account has been created successfully   </p>
+                 <h4 class="alert-heading">Bien hecho!</h4>
+                 <p> Tu cuenta ha sido creada satisfactoriamente   </p>
                  <hr>
-                 <p class="mb-0">Login now with your Email and Password
+                 <p class="mb-0">Ingresa tu correo y contraseña para ingresar
                  </p>
                </div>`
          
@@ -163,7 +208,7 @@ function verEmail(){
                     let alertPlaceholderEmail = document.getElementById('liveAlertPlaceholderEmail')
                     let wrapper2 = document.createElement('div')
                     alertPlaceholderEmail.innerHTML="";
-                    wrapper2.innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert"> Invalid Email <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                    wrapper2.innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert">Correo invalido <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
 
                     alertPlaceholderEmail.append(wrapper2)
                     
@@ -176,7 +221,7 @@ function verEmail(){
                     let alertPlaceholderEmail = document.getElementById('liveAlertPlaceholderEmail')
                     alertPlaceholderEmail.innerHTML="";
                     let wrapper2 = document.createElement('div')
-                    wrapper2.innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert"> Invalid Email <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                    wrapper2.innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert"> Correo invalido <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
 
                     alertPlaceholderEmail.append(wrapper2)
 
@@ -195,23 +240,40 @@ function verEmail(){
 
 var check = 0;
 function valEmplyFlield(){
-
+    let identVal = $("#IdentificationC").val();
     let nameVal = $("#nameCreation").val();
+    let addressVal = $("#AddressCreation").val();
+    let cellphoneVal = $("#CellphoneC").val();
     let correoVal = $("#correoCreation").val();
     let pass1 = $("#password1").val();
     let pass2 = $("#password2").val();
+    let zoneVal = $("#ZoneC").val();
+    let typeVal = $("#TypeC").val();
     
 
-    if (nameVal == "" || correoVal == "" || pass1 == "" || pass2 == ""){
+    if (identVal == "" || nameVal == "" || addressVal == "" || cellphoneVal == "" || correoVal == "" || pass1 == "" || pass2 == "" || zoneVal == "" || typeVal == ""){
         let cont = "";
+        
+        if (identVal == ""){
+            cont += " Identificacion ";
+        }
         if (nameVal == ""){
             cont += " Nombre ";
         }
-        if (correoVal == ""){
-            cont += " Correo ";
+        if (addressVal == ""){
+            cont += " Direccion ";
+        }
+        if (cellphoneVal == ""){
+            cont += " Celular ";
         }
         if (pass1 == "" || pass2 == ""){
             cont += " Contraseña ";
+        }
+        if (zoneVal == ""){
+            cont += " Zona ";
+        }
+        if (typeVal == ""){
+            cont += " Tipo ";
         }
 
         if (check == 0){
@@ -219,10 +281,10 @@ function valEmplyFlield(){
         var wrapper3 = document.createElement('div')
         alertPlaceholderHead.innerHTML = "";
         wrapper3.innerHTML = `<div class="alert alert-danger" role="alert">
-        <h4 class="alert-heading">Incorrect Data!</h4>
-        <p>  Please be sure to enter all the requested information   </p>
+        <h4 class="alert-heading">Datos Incorrectos!</h4>
+        <p>  Por favor ingresar todos los datos requeridos   </p>
         <hr>
-        <p class="mb-0">The following fields have not been filled out correctly.
+        <p class="mb-0">Los siguientes campos no han sido correctamente ingresados
         `+cont+ `
         </p>
       </div>`
@@ -238,10 +300,10 @@ function valEmplyFlield(){
         var wrapper3 = document.createElement('div')
         alertPlaceholderHead.innerHTML = "";
         wrapper3.innerHTML = `<div class="alert alert-danger" role="alert">
-        <h4 class="alert-heading">Incorrect Data!</h4>
-        <p>  Please be sure to enter all the requested information   </p>
+        <h4 class="alert-heading">Datos Incorrectos!</h4>
+        <p>  Por favor ingresar todos los datos requeridos  </p>
         <hr>
-        <p class="mb-0">The following fields have not been filled out correctly.
+        <p class="mb-0">Los siguientes campos no han sido correctamente ingresados
         `+cont+ `
         </p>
       </div>`
@@ -276,7 +338,7 @@ function saveUser(){
         contentType:"application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(var2),
-        url:"http://129.151.116.109:8080/api/user/new",
+        url:"http://localhost:8080/api/user/new",
         success:function(respose) {
             
             //alert("Se guardó correctametne..");
@@ -311,10 +373,10 @@ function valEmplyFlieldLog(){
         var wrapper4 = document.createElement('div')
         alertPlaceholderLog.innerHTML = "";
         wrapper4.innerHTML = `<div class="alert alert-danger" role="alert">
-        <h4 class="alert-heading">Incorrect Data!</h4>
-        <p>  Please be sure to enter all the requested information   </p>
+        <h4 class="alert-heading">Datos incorrectos!</h4>
+        <p>  Por favor ingresar todos los datos solicitados   </p>
         <hr>
-        <p class="mb-0">The following fields have not been filled out correctly.
+        <p class="mb-0">Los siguientes datos no han sido llenados de manera correcta
         `+cont+ `
         </p>
       </div>`
@@ -330,10 +392,10 @@ function valEmplyFlieldLog(){
         var wrapper4 = document.createElement('div')
         alertPlaceholderLog.innerHTML = "";
         wrapper4.innerHTML = `<div class="alert alert-danger" role="alert">
-        <h4 class="alert-heading">Incorrect Data!</h4>
-        <p>  Please be sure to enter all the requested information   </p>
+        <h4 class="alert-heading">Datos Incorrectos!</h4>
+        <p>  Por favor ingresar todos los datos solicitados   </p>
         <hr>
-        <p class="mb-0">The following fields have not been filled out correctly.
+        <p class="mb-0">Los siguientes datos no han sido llenados de manera correcta
         `+cont+ `
         </p>
       </div>`

@@ -122,4 +122,11 @@ public class cloneService {
         }
     }
     
+    
+    public Optional<Clone> getById(Integer id){
+    
+    return cloneRepo.getCloneById(id);
+    
+    }
+    
 }

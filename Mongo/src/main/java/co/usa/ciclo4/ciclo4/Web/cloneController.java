@@ -9,6 +9,7 @@ package co.usa.ciclo4.ciclo4.Web;
 import co.usa.ciclo4.ciclo4.Modelo.Clone;
 import co.usa.ciclo4.ciclo4.Service.cloneService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -49,6 +50,13 @@ public class cloneController {
 
     }
     
+    @GetMapping("/{id}")
+    public Optional<Clone> getById(@PathVariable int id){
+    
+        return service.getById(id);
+    
+    }
+    
     
     /**
      * 
@@ -79,10 +87,5 @@ public class cloneController {
        return  service.deleteClone(id);
     
     }
-    
-    
-    
-    
-    
     
 }
