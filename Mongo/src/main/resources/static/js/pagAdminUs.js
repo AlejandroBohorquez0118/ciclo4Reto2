@@ -15,7 +15,8 @@ function cargarDatos(){
                // alert('Petición realizada, '+xhr.status);
             },
             success : function(json) {
-                $("#Table").empty();
+              window.datos = json;  
+              $("#Table").empty();
                 
                 tabla = `<center><table class="table table-bordered">
                 
@@ -37,9 +38,11 @@ function cargarDatos(){
               <tbody>
               `
                 for(i = 0;  i < json.length; i++){
-                    
-                   tabla += `<tr>
-                   <td>${json[contador].identification}  
+                  console.log(window.datos.identification);
+                 console.log(json[contador].identification); 
+                  let identification = json[contador].identification;
+                  tabla += `<tr>
+                   <td>`+identification+`  
                    <td>${json[contador].name}
                    <td>${json[contador].address}
                    <td>${json[contador].cellPhone}
@@ -104,22 +107,12 @@ function borrarUsuario(id){
         });
     }
 
-
-
-function editarUsuario(id){
-
-
-
-
-}
-
-
 function ObtenerDatos(id){
       
-      var dataToSend=JSON.stringify(id);
+      window.dataToSend=JSON.stringify(id);
 
     $.ajax({    
-        url : 'http://localhost:8080/api/user/'+dataToSend,
+        url : 'http://localhost:8080/api/user/'+window.dataToSend,
     //  data : { id : 123 },
         type : 'GET',
         dataType : 'json',
@@ -146,10 +139,7 @@ function ObtenerDatos(id){
     });
 }
 
-function confirmarDatos(){
-
-  var campoAlerta = document.getElementById("AlertaContraseña")
-   
+function confirmarVacios(){
 
   let identification = $("#IdentificationE").val();
   let name = $("#nameEdit").val();
@@ -160,8 +150,35 @@ function confirmarDatos(){
   let passwordE2 = $("#passwordEdit2").val();
   let zone = $("#ZoneEdit").val();
   let type = $("#TypeEdit").val();
-  
 
+  if(identification == "" || name == "" || address == "" || cellPhone == "" || email == "" || passwordE1 == "" || type == "" || zone == ""){
+
+    let alertaVacios = document.getElementById('AlertaGeneral')
+                 let alerta = document.createElement('div')
+                 alertaVacios.innerHTML="";
+                 alerta.innerHTML = `<div class="alert alert-danger" role="alert">
+                 <h4 class="alert-heading">Error</h4>
+                 <p> Hubo un error al Obtener los datos</p>
+                 <hr>
+                 <p class="mb-0">Debes ingresar todos los datos solicitados
+                 </p>
+               </div>`
+               alertaVacios.append(alerta)
+  }else{
+
+    confirmarDatos()
+  }
+
+}
+
+function confirmarDatos(){
+
+  var campoAlerta = document.getElementById("AlertaContraseña")
+
+  let email = $("#correoEdit").val();
+  let passwordE1 = $("#passwordEdit1").val();
+  let passwordE2 = $("#passwordEdit2").val();
+  
   let var1 = 0;
   let var2 = 1;
   let confirmarEmail = 0;
@@ -187,29 +204,30 @@ function confirmarDatos(){
 
     alert("El correo es invalido");
 
-}
+}else{
 let ver1 = document.getElementById("passwordEdit1");
 let ver2 = document.getElementById("passwordEdit2");
 
 if(passwordE1 != passwordE2){
 
-  
+    $ ('#AlertaContraseña').empty ();
     ver1.className="form-control is-invalid";
     ver2.className="form-control is-invalid";
-    var wrapper = document.createElement('div')
-    wrapper.innerHTML="";
-    wrapper.innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert"> Passwords do not match <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+    
+    let wrapper = document.createElement('div')
+    
+    wrapper.innerHTML = '<div class="alert alert-danger alert-dismissible" role="alert"> Contraseñas no concuerdan <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
 
     campoAlerta.append(wrapper)
 
 }else{
-  var wrapper = document.getElementById("AlertaContraseña")
+  let wrapper = document.getElementById("AlertaContraseña")
     wrapper.innerHTML="";
     ver1.className="form-control";
     ver2.className="form-control";
-
+    confirmEmail()
 }
-confirmEmail()
+}
 }
 
 
@@ -234,11 +252,16 @@ $.ajax({
           if(userEmail == window.confirmacionCorreo){
             
             console.log("vamo bien");
+            guardarCambios();
 
           }
           else{
           alert("correo ya existe")
           }
+        }else{
+
+          guardarCambios();
+
         }
 
       },
@@ -252,9 +275,51 @@ $.ajax({
 }
 
 
-function confContraseña(){
+function guardarCambios(){
 
-  
+    var elemento={
+      id: window.dataToSend,
+      identification: $("#IdentificationE").val(),
+      name: $("#nameEdit").val(),
+      address: $("#AddressEdit").val(),
+      cellPhone: $("#CellphoneEdit").val(),
+      email: $("#correoEdit").val(),
+      passwordE1: $("#passwordEdit1").val(),
+      zone: $("#ZoneEdit").val(),
+      type: $("#TypeEdit").val()
+          
+    };
+    
+    var dataToSend=JSON.stringify(elemento);
+    console.log("datos para enviar:");
+    console.log(dataToSend);
+    $.ajax({    
 
+        dataType : 'JSON',
+       
+        data: dataToSend,
+        
+        url: 'http://localhost:8080/api/user/update',
+        
+        type: 'PUT',
+        contentType:'application/json',
+        
+        
+        success : function(json, textStatus, xhr) {
+         
+                console.log(json);
+        },
+        
+        
+        complete : function(xhr, status) {
+            //alert('Petición realizada '+xhr.status);
+                let modal = document.getElementById("menuEdicionUsuario");
+                 modal.style.display="none";
 
+                 $('.modal-backdrop').remove();
+                 alert("edicion completa");
+                 
+                 pagAdminUs();
+        }
+    }); 
 }

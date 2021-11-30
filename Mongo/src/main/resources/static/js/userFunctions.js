@@ -8,7 +8,7 @@ function userlogging(){
    
     $.ajax({    
 
-        url: 'http://129.151.116.109:8080/api/user/'+userEmail+'/'+userPass,
+        url: 'http://localhost:8080/api/user/'+userEmail+'/'+userPass,
         
         type: 'GET',
         dataType : 'JSON',
@@ -59,7 +59,7 @@ function userlogging(){
 
                 }else{
 
-                    location.href="http://129.151.116.109:8080/succesInterface.html";
+                    location.href="http://localhost:8080/adminUser.html";
                 
 
                 }
