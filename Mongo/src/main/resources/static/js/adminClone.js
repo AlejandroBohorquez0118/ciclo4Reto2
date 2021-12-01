@@ -235,8 +235,7 @@ function guardarCambios(){
                  $('.modal-backdrop').remove();
                  alert("edicion completa");
                  
-                 location.reload();
-                 cargarDatos2();
+                 pagAdminProd();
         }
     }); 
 }
