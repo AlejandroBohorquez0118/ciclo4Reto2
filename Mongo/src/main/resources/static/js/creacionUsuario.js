@@ -71,7 +71,8 @@ function validarCamposVacios(){
         
     }
 
-    }else{alert("Vamos bien");
+    }else{
+    //alert("Vamos bien");
     confirmarEmailU();
     let alertPlaceholderHead = document.getElementById('liveAlertPlaceholderHeadU')
     alertPlaceholderHead.innerHTML = "";   
@@ -119,7 +120,7 @@ function confirmarEmailU(){
     
 
 }else{
-alert("funcion verificar email correcta")
+//alert("funcion verificar email correcta")
 let alertPlaceholderEmail = document.getElementById('liveAlertPlaceholderEmailU')
 alertPlaceholderEmail.innerHTML="";
 let emailVal = document.getElementById("correoCreationU");
@@ -270,7 +271,7 @@ function saveUserU(){
         data: JSON.stringify(var2),
         url:"http://localhost:8080/api/user/new",
         success:function(respose) {
-            alert("se guardo satisfactoriamente")
+            //alert("se guardo satisfactoriamente")
             console.log(respose);
             console.log("funciono "+var2)
             //alert("Se guardó correctametne..");
