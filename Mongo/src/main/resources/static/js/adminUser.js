@@ -12,7 +12,7 @@ function pagCreUs() {
     $(this).html(data);
     })
     console.log("pagAdminUs1")
-    cargarDatos()
+    
     console.log("pagAdminUs")
 }
 
