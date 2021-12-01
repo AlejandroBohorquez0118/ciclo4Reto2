@@ -1,5 +1,5 @@
 function pagAdminUs() {
-    $("#containerPag").load("http://localhost:8080/pagAdminUs.html", function (data) {
+    $("#containerPag").load("http://129.151.116.109:8080/pagAdminUs.html", function (data) {
     $(this).html(data);
     })
     console.log("pagAdminUs1")
@@ -8,7 +8,7 @@ function pagAdminUs() {
 }
 
 function pagCreUs() {
-    $("#containerPag").load("http://localhost:8080/creacionUsuario.html", function (data) {
+    $("#containerPag").load("http://129.151.116.109:8080/creacionUsuario.html", function (data) {
     $(this).html(data);
     })
     console.log("pagAdminUs1")
@@ -17,10 +17,10 @@ function pagCreUs() {
 }
 
 function pagAdminProd() {
-    $("#containerPag").load("http://localhost:8080/adminClone.html", function (data) {
+    $("#containerPag").load("http://129.151.116.109:8080/adminClone.html", function (data) {
     $(this).html(data);
     })
-    console.log("adminClone")
-    
-    console.log("pagAdminUs")
+    console.log("adminClone");
+    cargarDatos2();
+    console.log("adminClone2");
 }
