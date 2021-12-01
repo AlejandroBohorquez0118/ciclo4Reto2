@@ -21,6 +21,6 @@ function pagAdminProd() {
     $(this).html(data);
     })
     console.log("adminClone")
-    
+    cargarDatos2();
     console.log("pagAdminUs")
 }
