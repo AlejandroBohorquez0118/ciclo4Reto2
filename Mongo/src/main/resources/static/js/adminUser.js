@@ -16,3 +16,11 @@ function pagCreUs() {
     console.log("pagAdminUs")
 }
 
+function pagAdminProd() {
+    $("#containerPag").load("http://localhost:8080/adminClone.html", function (data) {
+    $(this).html(data);
+    })
+    console.log("adminClone")
+    
+    console.log("pagAdminUs")
+}
