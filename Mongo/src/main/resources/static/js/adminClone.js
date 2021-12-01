@@ -106,8 +106,7 @@ function borrarProd(id){
         complete : function(xhr, status) {
            //lert('Petición realizada '+xhr.status);
             //limpiarFormulario();
-            location.reload();
-            cargarDatos2();
+            pagAdminProd();
         }
     });
 }
