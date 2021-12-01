@@ -368,10 +368,11 @@ function saveUser(){
         data: JSON.stringify(var2),
         url:"http://localhost:8080/api/user/new",
         success:function(respose) {
-            
-            //alert("Se guardó correctametne..");
-            //window.location.reload();
-            
+            setTimeout(function(){
+                let limpiarAlerta = document.getElementById("liveAlertPlaceholderLog");
+                limpiarAlerta.innerHTML= "";
+                
+            },5000); 
         },
         error:function(jqXHR, textStatus, errorTrown){
             
