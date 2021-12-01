@@ -8,7 +8,7 @@ function userlogging(){
    
     $.ajax({    
 
-        url: 'http://129.151.116.109:8080/api/user/'+userEmail+'/'+userPass,
+        url: 'http://localhost:8080/api/user/'+userEmail+'/'+userPass,
         
         type: 'GET',
         dataType : 'JSON',
@@ -162,7 +162,7 @@ function verEmail(){
 
     $.ajax({    
 
-        url: 'http://129.151.116.109:8080/api/user/emailexist/'+userEmailVer,
+        url: 'http://localhost:8080/api/user/emailexist/'+userEmailVer,
         
         type: 'GET',
         dataType : 'JSON',
@@ -323,7 +323,7 @@ function valEmplyFlield(){
 function creacionIdL(){
 
     $.ajax({    
-        url : 'http://129.151.116.109:8080/api/user/all',
+        url : 'http://localhost:8080/api/user/all',
     //  data : { id : 123 },
         type : 'GET',
         dataType : 'json',

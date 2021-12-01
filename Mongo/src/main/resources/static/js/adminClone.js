@@ -4,7 +4,7 @@ function cargarDatos2(){
     
 
     $.ajax({    
-            url : 'http://129.151.116.109:8080/api/clone/all',
+            url : 'http://localhost:8080/api/clone/all',
         //  data : { id : 123 },
             type : 'GET',
             dataType : 'json',
@@ -94,7 +94,7 @@ function borrarProd(id){
         data : dataToSend,
         
        
-        url : "http://129.151.116.109:8080/api/clone/"+id,
+        url : "http://localhost:8080/api/clone/"+id,
         type: 'DELETE',
         contentType:'application/json',
         success : function(json, textStatus, xhr) {
@@ -117,7 +117,7 @@ function ObtenerDatos2(id){
     window.dataToSend2=JSON.stringify(id);
 
   $.ajax({    
-      url : 'http://129.151.116.109:8080/api/clone/'+window.dataToSend2,
+      url : 'http://localhost:8080/api/clone/'+window.dataToSend2,
   //  data : { id : 123 },
       type : 'GET',
       dataType : 'json',
@@ -214,7 +214,7 @@ function guardarCambios(){
        
         data: dataToSend,
         
-        url: 'http://129.151.116.109:8080/api/clone/update',
+        url: 'http://localhost:8080/api/clone/update',
         
         type: 'PUT',
         contentType:'application/json',
