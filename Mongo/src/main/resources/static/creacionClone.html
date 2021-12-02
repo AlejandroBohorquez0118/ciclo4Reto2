@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label for="memoryProd" class="text-black">Memoria</label><br>
-                            <input type="number" name="memoryProd" id="memoryProd" class="form-control" required>
+                            <input type="text" name="memoryProd" id="memoryProd" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="hardDriveProd" class="text-black">Disco duro</label><br>
@@ -47,17 +47,17 @@
                             <label for="availabilityProd" class="text-black">Disponibilidad</label><br>
                             <select name="availabilityProd" id="availabilityProd" class="form-control" required>
                                 <option selected value="">Selecciona disponibilidad</option>
-                                <option value="disponible">Disponible</option>
-                                <option value="noDisponible">No disponible</option>
+                                <option value="true">Disponible</option>
+                                <option value="false">No disponible</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="priceProd" class="text-black">Precio</label><br>
-                            <input type="number" name="priceProd" id="priceProd" class="form-control" required>
+                            <input type="text" name="priceProd" id="priceProd" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="quantityProd" class="text-black">Cantidad</label><br>
-                            <input type="number" name="quantityProd" id="quantityProd" class="form-control" required>
+                            <input type="text" name="quantityProd" id="quantityProd" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="photografyProd" class="text-black">Fotografia</label><br />
@@ -67,9 +67,11 @@
                 </div>
             </div>
         </div>
+        
         <div class="form-group text-center">
+            <br>
             <input type="submit" name="guardarDatos" class="btn btn-dark btn-md" value="Guardar" onclick="validarVacios()" />
-            <input class="btn btn-secondary" value="Cancelar" onclick="" />
+            
         </div>
 
         </form>

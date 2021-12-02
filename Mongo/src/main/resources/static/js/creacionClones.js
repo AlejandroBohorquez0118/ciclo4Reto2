@@ -123,40 +123,47 @@ function creacionIdClone(){
 
 
 function saveClone(clone) {
-    let datos = {
+        let availabilityVal = document.getElementById("availabilityProd").value;
+        console.log(availabilityVal);
+        let datos = {
         id:window.idCloneGen,
         brand : $("#brandProd").val(),
         procesor : $("#processorProd").val(),
         os : $("#osProd").val(),
-        description : $("#escriptionProd").val(),
-        memory : $("#memoryProdr").val(),
-        hardDrive : $("#passwordUser").val(),
-        availability : $("#zoneUser").val(),
-        price : $("#price").val(),
-        quantity : $("#quantity").val(),
+        description : $("#descriptionProd").val(),
+        memory : $("#memoryProd").val(),
+        hardDrive : $("#hardDriveProd").val(),
+        availability : availabilityVal,
+        price : $("#priceProd").val(),
+        quantity : $("#quantityProd").val(),
         photography : $("#photografyProd").val()
         
     }
 
-    let datosPeticion = JSON.stringify(datos)
-
     
+
+    console.log(datos);
     $.ajax({
-      
+        type:'POST',
+        contentType: "application/json; charset=utf-8",
+        dataType: 'JSON',
+        data: JSON.stringify(datos),
         url: "http://localhost:8080/api/clone/new",
               
-        datos: datosPeticion,
-      
-        type: 'POST',
-
-        contentType: "application/JSON",
-
-        dataType: 'json',
-        
         success: function (respuesta) {
+            console.log("Se guardo correctamente");
+        
+            let alertPlaceholderLog = document.getElementById('liveAlertPlaceholderClone')
+            var wrapper4 = document.createElement('div')
+            alertPlaceholderLog.innerHTML="";
+            wrapper4.innerHTML = `<div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Bien hecho!</h4>
+            <p> El producto ha sido creada satisfactoriamente   </p>
             
-            console.log(respuesta);
-            resultado(respuesta)	
+          </div>`
+    
+            alertPlaceholderLog.append(wrapper4)
+        
         },
 
         error: function (xhr, status) {
@@ -165,7 +172,7 @@ function saveClone(clone) {
         },
       
         complete: function (xhr, status) {
-            console.log("Se guardo correctamente"  + status);
+           
         }
     });
 }

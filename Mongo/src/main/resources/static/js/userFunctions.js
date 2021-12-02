@@ -5,7 +5,7 @@ function userlogging(){
         
         let userEmail = $("#userEmail").val();
         let userPass = $("#userPass").val();
-   
+
     $.ajax({    
 
         url: 'http://localhost:8080/api/user/'+userEmail+'/'+userPass,
