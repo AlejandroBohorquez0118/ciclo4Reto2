@@ -163,7 +163,12 @@ function saveClone(clone) {
           </div>`
     
             alertPlaceholderLog.append(wrapper4)
-        
+
+            
+            setTimeout(function(){
+                pagCreProd();
+                
+            },5000); 
         },
 
         error: function (xhr, status) {
@@ -178,3 +183,21 @@ function saveClone(clone) {
 }
 
 
+
+
+
+function limpiarCamposClone(){
+
+    $("#brandProd").val("");
+    $("#processorProd").val("");
+    $("#osProd").val("");
+    $("#descriptionProd").val("");
+    $("#memoryProd").val("");
+    $("#hardDriveProd").val("");
+    let availabilityVal = document.getElementById("availabilityProd").value;
+    availabilityVal = "Selecciona disponibilidad";
+    $("#priceProd").val("");
+    $("#quantityProd").val("");
+    $("#photografyProd").val("");    
+
+}

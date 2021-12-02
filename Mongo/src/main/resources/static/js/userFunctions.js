@@ -5,10 +5,10 @@ function userlogging(){
         
         let userEmail = $("#userEmail").val();
         let userPass = $("#userPass").val();
-
+   
     $.ajax({    
 
-        url: 'http://localhost:8080/api/user/'+userEmail+'/'+userPass,
+        url: 'http://129.151.116.109:8080/api/user/'+userEmail+'/'+userPass,
         
         type: 'GET',
         dataType : 'JSON',
@@ -59,7 +59,7 @@ function userlogging(){
 
                 }else{
 
-                    location.href="http://localhost:8080/adminUser.html";
+                    location.href="http://129.151.116.109:8080/adminUser.html";
                 
 
                 }
@@ -162,7 +162,7 @@ function verEmail(){
 
     $.ajax({    
 
-        url: 'http://localhost:8080/api/user/emailexist/'+userEmailVer,
+        url: 'http://129.151.116.109:8080/api/user/emailexist/'+userEmailVer,
         
         type: 'GET',
         dataType : 'JSON',
@@ -323,7 +323,7 @@ function valEmplyFlield(){
 function creacionIdL(){
 
     $.ajax({    
-        url : 'http://localhost:8080/api/user/all',
+        url : 'http://129.151.116.109:8080/api/user/all',
     //  data : { id : 123 },
         type : 'GET',
         dataType : 'json',
@@ -366,7 +366,7 @@ function saveUser(){
         contentType:"application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(var2),
-        url:"http://localhost:8080/api/user/new",
+        url:"http://129.151.116.109:8080/api/user/new",
         success:function(respose) {
             setTimeout(function(){
                 let limpiarAlerta = document.getElementById("liveAlertPlaceholderLog");

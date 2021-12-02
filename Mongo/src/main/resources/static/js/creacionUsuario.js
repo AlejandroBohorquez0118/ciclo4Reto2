@@ -88,7 +88,7 @@ function confirmarEmailU(){
   let var2 = 1;
   let confirmarEmail = 0;
   let confirmarPunto = 0;
-  console.log("ejecutar confirmar");
+  
   for(i = 0 ; i < email.length; i++){
     
     var confirmar = email.substring(var1,var2);  
@@ -177,7 +177,7 @@ function verEmailU(){
 
     $.ajax({    
 
-        url: 'http://localhost:8080/api/user/emailexist/'+userEmailVerU,
+        url: 'http://129.151.116.109:8080/api/user/emailexist/'+userEmailVerU,
         
         type: 'GET',
         dataType : 'JSON',
@@ -263,20 +263,19 @@ function saveUserU(){
         type:$("#TypeU").val()
         
     };
-    console.log(var2);
+    
     $.ajax({
         type:'POST',
         contentType:"application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(var2),
-        url:"http://localhost:8080/api/user/new",
+        url:"http://129.151.116.109:8080/api/user/new",
         success:function(respose) {
-            //alert("se guardo satisfactoriamente")
-            console.log(respose);
-            console.log("funciono "+var2)
-            //alert("Se guardó correctametne..");
-            //window.location.reload();
             
+            setTimeout(function(){
+                pagCreUs();
+                
+            },5000); 
         },
         error:function(jqXHR, textStatus, errorTrown){
             
@@ -289,7 +288,7 @@ function saveUserU(){
     function creacionId(){
 
         $.ajax({    
-            url : 'http://localhost:8080/api/user/all',
+            url : 'http://129.151.116.109:8080/api/user/all',
         //  data : { id : 123 },
             type : 'GET',
             dataType : 'json',
@@ -302,7 +301,7 @@ function saveUserU(){
             },
             success : function(json) {
                 window.idCarga = json.length + 1;
-                console.log(window.idCarga)
+                
                 saveUserU();
             }
         });

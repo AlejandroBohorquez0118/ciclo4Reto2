@@ -3,7 +3,7 @@ function cargarDatos(){
     
 
     $.ajax({    
-            url : 'http://localhost:8080/api/user/all',
+            url : 'http://129.151.116.109:8080/api/user/all',
         //  data : { id : 123 },
             type : 'GET',
             dataType : 'json',
@@ -38,8 +38,7 @@ function cargarDatos(){
               <tbody>
               `
                 for(i = 0;  i < json.length; i++){
-                  console.log(window.datos.identification);
-                 console.log(json[contador].identification); 
+                  
                   let identification = json[contador].identification;
                   tabla += `<tr>
                    <td>`+identification+`  
@@ -67,8 +66,7 @@ function cargarDatos(){
                    contador += 1;
                 }
                 $("#Table").append(tabla+"</table>")
-                console.log(json)
-                console.log("porongaS")
+                
                 
             }
         });
@@ -90,19 +88,19 @@ function borrarUsuario(id){
             data : dataToSend,
             
            
-            url : "http://localhost:8080/api/user/"+id,
+            url : "http://129.151.116.109:8080/api/user/"+id,
             type: 'DELETE',
             contentType:'application/json',
             success : function(json, textStatus, xhr) {
               
-                    console.log("borrado satisfactorio");
                     
+                    pagAdminUs()
             },
             
             complete : function(xhr, status) {
                //lert('Petición realizada '+xhr.status);
                 //limpiarFormulario();
-                cargarDatos();
+                
             }
         });
     }
@@ -112,7 +110,7 @@ function ObtenerDatos(id){
       window.dataToSend=JSON.stringify(id);
 
     $.ajax({    
-        url : 'http://localhost:8080/api/user/'+window.dataToSend,
+        url : 'http://129.151.116.109:8080/api/user/'+window.dataToSend,
     //  data : { id : 123 },
         type : 'GET',
         dataType : 'json',
@@ -124,7 +122,7 @@ function ObtenerDatos(id){
            // alert('Petición realizada, '+xhr.status);
         },
         success : function(json) {
-            console.log(json)
+            
             window.confirmacionCorreo = json.email;
             $("#IdentificationE").val(json.identification);
             $("#nameEdit").val(json.name);
@@ -183,7 +181,7 @@ function confirmarDatos(){
   let var2 = 1;
   let confirmarEmail = 0;
   let confirmarPunto = 0;
-  console.log("ejecutar confirmar");
+  
   for(i = 0 ; i < email.length; i++){
     
     var confirmar = email.substring(var1,var2);  
@@ -237,7 +235,7 @@ function confirmEmail(){
 
 $.ajax({    
 
-  url: 'http://localhost:8080/api/user/emailexist/'+userEmail,
+  url: 'http://129.151.116.109:8080/api/user/emailexist/'+userEmail,
   
   type: 'GET',
   dataType : 'JSON',
@@ -247,16 +245,15 @@ $.ajax({
   success : function(json, textStatus, xhr) {
    
         if(json == true){
-          console.log(json.email);
-            console.log(userEmail);
+          
           if(userEmail == window.confirmacionCorreo){
             
-            console.log("vamo bien");
+           
             guardarCambios();
 
           }
           else{
-          alert("correo ya existe")
+          
           }
         }else{
 
@@ -291,15 +288,14 @@ function guardarCambios(){
     };
     
     var dataToSend=JSON.stringify(elemento);
-    console.log("datos para enviar:");
-    console.log(dataToSend);
+    
     $.ajax({    
 
         dataType : 'JSON',
        
         data: dataToSend,
         
-        url: 'http://localhost:8080/api/user/update',
+        url: 'http://129.151.116.109:8080/api/user/update',
         
         type: 'PUT',
         contentType:'application/json',
@@ -307,7 +303,7 @@ function guardarCambios(){
         
         success : function(json, textStatus, xhr) {
          
-                console.log(json);
+                
         },
         
         
