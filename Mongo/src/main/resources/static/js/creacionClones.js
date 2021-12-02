@@ -99,7 +99,7 @@ function validarVacios(){
 function creacionIdClone(){
 
     $.ajax({    
-        url : 'http://localhost:8080/api/clone/all',
+        url : 'http://129.151.116.109:8080/api/clone/all',
     //  data : { id : 123 },
         type : 'GET',
         dataType : 'json',
@@ -148,7 +148,7 @@ function saveClone(clone) {
         contentType: "application/json; charset=utf-8",
         dataType: 'JSON',
         data: JSON.stringify(datos),
-        url: "http://localhost:8080/api/clone/new",
+        url: "http://129.151.116.109:8080/api/clone/new",
               
         success: function (respuesta) {
             console.log("Se guardo correctamente");
