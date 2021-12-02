@@ -30,16 +30,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-
+/**
+ * Clase para implementar los servicos y que el usuario realice las peticiones crud
+ */
 public class UserController {
 
     @Autowired
+    /**
+     * Metodo para llamar los metodos de los servcios
+     */
     private UserService service;
 
     
     /**
-     * 
-     * @return 
+     * Metodo de tipo get para obtener usuarios 
+     * @return lista de todos los usuarios
      */
     @GetMapping("/all")
     public List<User> getUsuarios() {
@@ -47,7 +52,11 @@ public class UserController {
         return service.getAll();
 
     }
-    
+    /**
+     * Metodo de tipo get  para obtener un  usuario por su id
+     * @param id
+     * @return el usuario 
+     */
     @GetMapping("/{id}")
     public Optional<User> getUserById(@PathVariable int id){
     
@@ -56,9 +65,9 @@ public class UserController {
     }
     
     /**
-     * 
+     * Metodo get para validar si un correo de usuario existe
      * @param email
-     * @return 
+     * @return true or false
      */
     @GetMapping("/emailexist/{email}")
     public boolean existEmail(@PathVariable("email") String email) {
@@ -69,9 +78,9 @@ public class UserController {
     
     
     /**
-     * 
+     * Metodo post para crear un usuario nuevo
      * @param user
-     * @return 
+     * @return user
      */
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
@@ -83,10 +92,10 @@ public class UserController {
     
     
     /**
-     * 
+     * Metodo get para validar si un correo y una contraseña existen en los usuarios
      * @param email
      * @param password
-     * @return 
+     * @return usuario
      */
     @GetMapping("/{email}/{password}")
     public User existEmailPass(@PathVariable("email") String email,@PathVariable("password") String password) {
@@ -95,7 +104,11 @@ public class UserController {
 
     }
     
-    
+    /**
+     * Metodo Put para actualizar los datos de un usuario ya creado
+     * @param user
+     * @return  usuario actualizado
+     */
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public User update(@RequestBody User user){
@@ -103,7 +116,11 @@ public class UserController {
     return service.update(user);
     
     }
-    
+    /**
+     * Metodo delete para borrar un usuario por su id
+     * @param id
+     * @return 
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Integer delete(@PathVariable Integer id){

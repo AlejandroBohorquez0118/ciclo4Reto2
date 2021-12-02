@@ -16,6 +16,7 @@
                         <h1 class=" text-black">Creacion de Clones</h1>
                   
                             <p class="fs-5">Ingrese los datos del nuevo clone </p>
+                            <div id="liveAlertPlaceholderClone"></div>
                 
                         <div class="form-group">
                             <label for="brandProd" class="text-black ">Marca</label><br />
@@ -67,7 +68,7 @@
             </div>
         </div>
         <div class="form-group text-center">
-            <input type="submit" name="guardarDatos" class="btn btn-dark btn-md" value="Guardar" onclick="saveClone()" />
+            <input type="submit" name="guardarDatos" class="btn btn-dark btn-md" value="Guardar" onclick="validarVacios()" />
             <input class="btn btn-secondary" value="Cancelar" onclick="" />
         </div>
 
