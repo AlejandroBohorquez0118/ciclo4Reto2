@@ -107,6 +107,8 @@ function borrarUsuario(id){
 
 function ObtenerDatos(id){
       
+  cambioClass();
+
       window.dataToSend=JSON.stringify(id);
 
     $.ajax({    
@@ -314,8 +316,26 @@ function guardarCambios(){
 
                  $('.modal-backdrop').remove();
                  alert("edicion completa");
+                 vuelveClass()
                  
                  pagAdminUs();
         }
     }); 
+}
+
+
+function cambioClass(){
+
+  let contain = document.getElementById("contain");
+
+  contain.style.opacity=1;
+
+}
+
+function vuelveClass(){
+
+  let contain = document.getElementById("contain");
+
+  contain.style.opacity=0.9;
+
 }

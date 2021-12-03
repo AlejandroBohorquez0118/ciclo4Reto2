@@ -113,6 +113,8 @@ function borrarProd(id){
 
 
 function ObtenerDatos2(id){
+
+  cambioClass();
       
     window.dataToSend2=JSON.stringify(id);
 
@@ -233,8 +235,24 @@ function guardarCambios(){
 
                  $('.modal-backdrop').remove();
                  alert("edicion completa");
-                 
+                 vuelveClass();
                  pagAdminProd();
         }
     }); 
+}
+
+function cambioClass(){
+
+  let contain = document.getElementById("contain");
+
+  contain.style.opacity=1;
+
+}
+
+function vuelveClass(){
+
+  let contain = document.getElementById("contain");
+
+  contain.style.opacity=0.9;
+
 }
